@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+/* Reseta margens e garante 100% de altura */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Garante que qualquer elemento ocupe o box corretamente */
+* {
+  box-sizing: border-box;
+}
