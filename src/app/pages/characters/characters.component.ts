@@ -1,15 +1,38 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from '../../Components/Header/header.components';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'characters-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterModule, HttpClientModule, HeaderComponent, CommonModule],
   templateUrl: './characters.component.html',
-  styleUrl: './characters.component.scss'
+  styleUrls: ['./characters.component.scss']
 })
-export class charactersComponent {
-  title = 'projeto-rickandmory';
+export class CharactersComponent implements OnInit {
+  characters: any[] = [];
+  isLoading = true;
+  errorMessage = '';
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.loadCharacters();
+  }
+
+  loadCharacters(): void {
+    this.http.get<any>('https://rickandmortyapi.com/api/character')
+      .subscribe({
+        next: (response) => {
+          this.characters = response.results;
+          this.isLoading = false;
+        },
+        error: () => {
+          this.errorMessage = 'Erro ao carregar personagens 😢';
+          this.isLoading = false;
+        }
+      });
+  }
 }
-
-

@@ -1,1 +1,38 @@
-<router-outlet />
+<header-root></header-root>
+
+<div class="page-characters">
+    <div class="header">
+        <h1>Characters</h1>
+        <p>Browse all Rick and Morty characters</p>
+        <input placeholder="search...">
+    </div>
+
+    <div *ngIf="isLoading">Carregando personagens...</div>
+    <div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <table class="table" *ngIf="!isLoading && !errorMessage">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Species</th>
+                <th>Gender</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let char of characters">
+                <td><img class="image" [src]="char.image" [alt]="char.name" /></td>
+                <td>{{ char.name }}</td>
+                <td>{{ char.status }}</td>
+                <td>{{ char.species }}</td>
+                <td>{{ char.gender }}</td>
+                <td>
+                    <a class="btn-detail" [routerLink]="['/detail']">Details</a>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>

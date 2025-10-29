@@ -1,11 +1,12 @@
 import { Component, signal } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-login',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterModule], 
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss'
 })
@@ -16,17 +17,6 @@ export class LoginComponent {
   constructor(
     private router: Router
   ) {}
-
-  onSubmit(): void {
-    if (this) {
-      const success = this;
-      if (success) {
-        this.router.navigate(['/characters']);
-      } else {
-        this
-      }
-    }
-  }
 }
 
 
