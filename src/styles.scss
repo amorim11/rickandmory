@@ -16,8 +16,10 @@ html, body {
 .btn-detail {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border: none;
-    padding: 10px;
-    border-radius: 4px;
+    display: inline-block;
+    text-align: center;
+    padding: 6px 10px;
+    border-radius: 8px;
     transition: all 0.2s ease;
     transform: translateY(0);
   :hover {

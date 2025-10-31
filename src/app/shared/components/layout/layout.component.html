@@ -1,0 +1,7 @@
+<div class="layout">
+    <app-header (toggleSidebar)="onToggleSidebar()" />
+    <app-sidebar [isOpen]="sidebarOpen()" />
+    <main class="main-content" [class.sidebar-open]="sidebarOpen()">
+        <router-outlet />
+    </main>
+</div>

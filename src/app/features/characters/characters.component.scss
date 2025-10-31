@@ -19,6 +19,7 @@
   text-align: left;
   padding: 30px;
   margin-bottom: 50px;
+  border-collapse: collapse;
 }
 
 .table th {
@@ -28,17 +29,18 @@
     letter-spacing: 0.5px;
     color: black;
     padding: 16px;
+    box-shadow: inset 0 -1px 0 #aaa;
 }
 .table td {
   font-size: 15px;
- 
   color: black;
   padding: 16px;
 }
 
 .table tbody tr {
-  border-bottom: 1px solid #aaaa;
+  box-shadow: inset 0 -1px 0 #aaa;
 }
+
 
 .table tbody tr:last-child {
   border-bottom: none;
@@ -50,9 +52,32 @@
 
 .image {
   width: 60px;
+  border-radius: 50%;
 }
 
 a {
   color: black;
   text-decoration: none;
+}
+
+.badge {
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  display: inline-block;
+  text-align: center;
+  min-width: 80px;
+}
+
+.bg-success {
+  background-color: #28a745 !important; /* Alive */
+}
+
+.bg-danger {
+  background-color: #dc3545 !important; /* Dead */
+}
+
+.bg-secondary {
+  background-color: #6c757d !important; /* Unknown */
 }

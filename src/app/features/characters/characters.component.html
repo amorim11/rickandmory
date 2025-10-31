@@ -1,4 +1,4 @@
-<header-root></header-root>
+<app-header></app-header>
 
 <div class="page-characters">
     <div class="header">
@@ -25,7 +25,12 @@
             <tr *ngFor="let char of characters">
                 <td><img class="image" [src]="char.image" [alt]="char.name" /></td>
                 <td>{{ char.name }}</td>
-                <td>{{ char.status }}</td>
+                <td>
+                    <span class="badge" [class.bg-success]="char.status === 'Alive'"
+                        [class.bg-danger]="char.status === 'Dead'" [class.bg-secondary]="char.status === 'unknown'">
+                        {{ char.status }}
+                    </span>
+                </td>
                 <td>{{ char.species }}</td>
                 <td>{{ char.gender }}</td>
                 <td>
