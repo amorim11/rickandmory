@@ -1,8 +1,7 @@
 .page-characters {
   display: flex;
   flex-direction: column;
-  margin-left: 150px;
-  background: white;
+  margin-left: 50px;
   width: 88%;
   margin-bottom: 20px;
 }
@@ -13,24 +12,21 @@
 
 .table {
   background: #f5f6fa;
-  border-radius: 8px;
+  border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  text-align: left;
-  padding: 30px;
-  margin-bottom: 50px;
   border-collapse: collapse;
 }
 
 .table th {
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 15px;
-    letter-spacing: 0.5px;
-    color: black;
-    padding: 16px;
-    box-shadow: inset 0 -1px 0 #aaa;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: black;
+  padding: 16px;
 }
+
 .table td {
   font-size: 15px;
   color: black;
@@ -51,7 +47,7 @@
 }
 
 .image {
-  width: 60px;
+  width: 50px;
   border-radius: 50%;
 }
 
@@ -62,22 +58,5 @@ a {
 
 .badge {
   padding: 6px 10px;
-  border-radius: 8px;
-  color: #fff;
-  font-weight: 600;
-  display: inline-block;
-  text-align: center;
   min-width: 80px;
-}
-
-.bg-success {
-  background-color: #28a745 !important; /* Alive */
-}
-
-.bg-danger {
-  background-color: #dc3545 !important; /* Dead */
-}
-
-.bg-secondary {
-  background-color: #6c757d !important; /* Unknown */
 }

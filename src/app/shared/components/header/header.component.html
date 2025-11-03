@@ -1,10 +1,32 @@
 <div class="header">
     <div class="header-left">
-        <button (click)="toggleSidebar.emit()"><i></i></button>
+        <button class="btn btn-link sidebar-toggle" (click)="toggleSidebar.emit()">
+            <i class="bi bi-list"></i>
+        </button>
         <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Rick_and_Morty.svg" alt="Rick and Morty"
             class="logo">
     </div>
     <div class="header-right">
-        <p>profile</p>
+        <div class="dropdown">
+            <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                <img [src]="AuthService.currentUser()?.avatar" alt="User" class="user-avatar">
+                <span class="user-name">{{ AuthService.currentUser()?.name }}</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                    <a class="dropdown-item" routerLink="/profile">
+                        <i class="bi bi-person"></i> My Profile
+                    </a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li>
+                    <button class="dropdown-item" (click)="AuthService.logout()">
+                        <i class="bi bi-box-arrow-right"></i> Sign Out
+                    </button>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

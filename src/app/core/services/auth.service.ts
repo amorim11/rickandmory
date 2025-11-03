@@ -19,7 +19,7 @@ export class AuthService {
       id: '1',
       name: credentials.email.split('@')[0],
       email: credentials.email,
-      avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=200'
+      avatar: 'https://cdn.pixabay.com/photo/2022/09/02/07/26/rick-sanchez-7426878_1280.jpg'
     };
 
     localStorage.setItem(this.TOKEN_KEY, fakeToken);

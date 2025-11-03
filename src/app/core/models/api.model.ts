@@ -29,7 +29,7 @@ export interface Character {
   created: string;
 }
 
-export interface Location {
+export interface AppLocation {
   id: number;
   name: string;
   type: string;

@@ -1,0 +1,98 @@
+<div class="page-container">
+    <div class="page-header">
+        <h1>Episodes</h1>
+        <p class="text-muted">Watch all Rick and Morty episodes</p>
+        <app-search-bar />
+    </div>
+
+
+
+    @if (loading() && episodes().length === 0) {
+    <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    }
+
+    @if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+    }
+
+    @if (episodes().length > 0) {
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Episode</th>
+                    <th>Name</th>
+                    <th>Air Date</th>
+                    <th>Characters</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (episode of episodes(); track episode.id) {
+                <tr>
+                    <td>
+                        <span class="badge bg-primary">{{ episode.episode }}</span>
+                    </td>
+                    <td class="fw-semibold">{{ episode.name }}</td>
+                    <td>{{ episode.air_date }}</td>
+                    <td>
+                        <span class="badge bg-info">{{ episode.characters.length }}</span>
+                    </td>
+                    <td>
+                        <button class="btn-detail" (click)="showDetails(episode)">
+                            Details
+                        </button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (hasMore() && !loading()) {
+    <div class="text-center py-4">
+        <button class="btn btn-outline-primary" (click)="loadMoreEpisodes()">
+            Load More
+        </button>
+    </div>
+    }
+
+    @if (loading() && episodes().length > 0) {
+    <div class="text-center py-4">
+        <div class="spinner-border spinner-border-sm text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    }
+    }
+
+    @if (selectedEpisode()) {
+    <div class="modal-backdrop" (click)="closeDetails()"></div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ selectedEpisode()!.name }}</h5>
+                <button type="button" class="btn-close" (click)="closeDetails()"></button>
+            </div>
+            <div class="modal-body">
+                <div class="info-item">
+                    <span class="info-label">Episode</span>
+                    <span class="info-value">{{ selectedEpisode()!.episode }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Air Date</span>
+                    <span class="info-value">{{ selectedEpisode()!.air_date }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Characters</span>
+                    <span class="info-value">{{ selectedEpisode()!.characters.length }} characters</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>

@@ -1,16 +1,23 @@
-<app-header></app-header>
-
 <div class="page-characters">
     <div class="header">
         <h1>Characters</h1>
         <p>Browse all Rick and Morty characters</p>
-        <input placeholder="search...">
+        <app-search-bar />
     </div>
 
-    <div *ngIf="isLoading">Carregando personagens...</div>
-    <div *ngIf="errorMessage">{{ errorMessage }}</div>
+    @if (loading() && characters().length === 0) {
+    <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    }
 
-    <table class="table" *ngIf="!isLoading && !errorMessage">
+    @if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+    }
+
+    <table class="table">
         <thead>
             <tr>
                 <th>Image</th>
@@ -22,22 +29,41 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let char of characters">
-                <td><img class="image" [src]="char.image" [alt]="char.name" /></td>
-                <td>{{ char.name }}</td>
+            @for (character of characters(); track character.id) {
+            <tr>
                 <td>
-                    <span class="badge" [class.bg-success]="char.status === 'Alive'"
-                        [class.bg-danger]="char.status === 'Dead'" [class.bg-secondary]="char.status === 'unknown'">
-                        {{ char.status }}
+                    <img [src]="character.image" [alt]="character.name" class="image">
+                </td>
+                <td>{{ character.name }}</td>
+                <td>
+                    <span class="badge" [class.bg-success]="character.status === 'Alive'"
+                        [class.bg-danger]="character.status === 'Dead'"
+                        [class.bg-secondary]="character.status === 'unknown'">
+                        {{ character.status }}
                     </span>
                 </td>
-                <td>{{ char.species }}</td>
-                <td>{{ char.gender }}</td>
+                <td>{{ character.species }}</td>
+                <td>{{ character.gender }}</td>
                 <td>
-                    <a class="btn-detail" [routerLink]="['/detail']">Details</a>
-                </td>
-            </tr>
+                    <a [routerLink]="['/characters', character.id]" class="btn-detail">
+                        Details
+                    </a>
+                    }
         </tbody>
-
     </table>
+    @if (hasMore() && !loading()) {
+    <div class="text-center py-4" #loadMore>
+        <button class="btn btn-outline-primary" (click)="loadMoreCharacters()">
+            Load More
+        </button>
+    </div>
+    }
+
+    @if (loading() && characters().length > 0) {
+    <div class="text-center py-4">
+        <div class="spinner-border spinner-border-sm text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    }
 </div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiResponse, Character, Location, Episode } from '../models/api.model';
+import { ApiResponse, Character, AppLocation, Episode } from '../models/api.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,14 +21,14 @@ export class RickMortyApiService {
     return this.http.get<Character>(`${this.baseUrl}/character/${id}`);
   }
 
-  getLocations(page: number = 1, name: string = ''): Observable<ApiResponse<Location>> {
+  getLocations(page: number = 1, name: string = ''): Observable<ApiResponse<AppLocation>> {
     const params: any = { page };
     if (name) params.name = name;
-    return this.http.get<ApiResponse<Location>>(`${this.baseUrl}/location`, { params });
+    return this.http.get<ApiResponse<AppLocation>>(`${this.baseUrl}/location`, { params });
   }
 
-  getLocation(id: number): Observable<Location> {
-    return this.http.get<Location>(`${this.baseUrl}/location/${id}`);
+  getLocation(id: number): Observable<AppLocation> {
+    return this.http.get<AppLocation>(`${this.baseUrl}/location/${id}`);
   }
 
   getEpisodes(page: number = 1, name: string = ''): Observable<ApiResponse<Episode>> {

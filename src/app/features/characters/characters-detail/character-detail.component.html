@@ -1,0 +1,73 @@
+<div class="page-container">
+    @if (loading()) {
+    <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    }
+
+    @if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+    }
+
+    @if (character()) {
+    <div class="detail-card">
+        <a routerLink="/characters" class="btn btn-outline-secondary mb-4">
+            <i class="bi bi-arrow-left"></i> Back to Characters
+        </a>
+
+        <div class="row">
+            <div class="col-md-4">
+                <img [src]="character()!.image" [alt]="character()!.name" class="character-image">
+            </div>
+            <div class="col-md-8">
+                <h1 class="character-name">{{ character()!.name }}</h1>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Status</span>
+                        <span class="badge" [class.bg-success]="character()!.status === 'Alive'"
+                            [class.bg-danger]="character()!.status === 'Dead'"
+                            [class.bg-secondary]="character()!.status === 'unknown'">
+                            {{ character()!.status }}
+                        </span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Species</span>
+                        <span class="info-value">{{ character()!.species }}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Gender</span>
+                        <span class="info-value">{{ character()!.gender }}</span>
+                    </div>
+
+                    @if (character()!.type) {
+                    <div class="info-item">
+                        <span class="info-label">Type</span>
+                        <span class="info-value">{{ character()!.type }}</span>
+                    </div>
+                    }
+
+                    <div class="info-item">
+                        <span class="info-label">Origin</span>
+                        <span class="info-value">{{ character()!.origin.name }}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Last Known Location</span>
+                        <span class="info-value">{{ character()!.location.name }}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Episodes</span>
+                        <span class="info-value">{{ character()!.episode.length }} episodes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>
